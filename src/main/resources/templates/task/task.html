@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title>Task detail</title>
+</head>
+
+<body>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1><span th:text="${task.parent} ? 'Subtask' : 'Task'"></span> detail</h1>
+        <table>
+            <tbody>
+            <tr th:if="${task.parent}">
+                <td>Parent: </td>
+                <td><a th:href="@{/tasks/{slug}(slug=${{task.parent.uuid}})}" th:text="${task.parent.title}"></a></td>
+            </tr>
+            <tr>
+                <td>Title: </td>
+                <td th:text="${task.title}"></td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td>
+                    "<span th:utext="${T(net.pfiers.ipm_minor_ex1.util.ThymeleafUtil).multilineEscape(task.description)}"></span>"
+                </td>
+            </tr>
+            <tr>
+                <td>Due date: </td>
+                <td th:text="${#temporals.format(task.due, 'MMMM dd yyyy ''at'' HH:mm')}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if="${!subTasks.isEmpty()}">
+            <h2>Subtasks</h2>
+            <ul>
+                <li th:each="subTask: ${subTasks}">
+                    <a th:href="@{/tasks/{slug}(slug=${{subTask.uuid}})}" th:text="${subTask.title}"></a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <aside>
+        <p>
+            <a th:href="@{/tasks/edit/{slug}(slug=${{task.uuid}})}">edit</a>
+            <a th:href="@{/tasks/{slug}/sub/create(slug=${{task.uuid}})}">add subtask</a>
+        </p>
+    </aside>
+</div>
+</body>

@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title>No such task</title>
+</head>
+
+<body>
+<div class="content">
+    <main>
+        <h1>No such task: <span th:text="${{uuid}}"></span></h1>
+        <p>You may have clicked a broken link or made a spelling mistake.</p>
+        <p class="extra-info">Task UUID: <span th:text="${uuid}"></span></p>
+    </main>
+    <aside>
+        <p><a th:href="@{/tasks}">back to tasks overview</a></p>
+        <p><a th:href="@{/}">home</a></p>
+    </aside>
+</div>
+</body>

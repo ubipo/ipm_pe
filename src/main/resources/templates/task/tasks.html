@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title>Tasks</title>
+</head>
+
+<body>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1>Tasks</h1>
+        <div th:switch="${tasks.isEmpty()}">
+            <ul th:case="false">
+                <li th:each="task: ${tasks}">
+                    <span th:text="|${task.title}: |"></span>
+                    <span> due </span>
+                    <span th:text="${#temporals.format(task.due, 'MMMM dd yyyy ''at'' HH:mm')}"></span>
+                    <a th:href="@{/tasks/{slug}(slug=${{task.uuid}})}">details</a>
+                </li>
+            </ul>
+            <p th:case="true">No tasks left to do</p>
+        </div>
+        <p>
+            <a th:href="@{/tasks/create}">add task</a>
+        </p>
+    </main>
+</div>
+</body>
+
+</html>

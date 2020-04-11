@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<header th:fragment="header">
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">home</a></li>
+            <li><a th:href="@{/tasks}">tasks</a></li>
+            <li><a th:href="@{/tasks/create}">create task</a></li>
+        </ul>
+    </nav>
+</header>
+
+</html>

@@ -1,0 +1,69 @@
+
+/* General */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcecfc+0,9ba394+0,ffeaf8+100 */
+    background: #fcecfc; /* Old browsers */
+    background: -moz-linear-gradient(45deg,  #fcecfc 0%, #9ba394 0%, #ffeaf8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  #fcecfc 0%,#9ba394 0%,#ffeaf8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  #fcecfc 0%,#9ba394 0%,#ffeaf8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcecfc', endColorstr='#ffeaf8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.content {
+    margin-top: 1rem;
+    max-width: 40rem;
+}
+
+
+/* Text style */
+
+/**/
+
+
+/* Header */
+
+nav > ul {
+    padding-left: 0;
+    overflow: auto;
+    list-style: none;
+}
+
+nav > ul > li {
+    float: left;
+    margin-right: 1rem;
+}
+
+
+/* Form */
+
+form > div {
+    margin-bottom: 1rem;
+}
+
+form > div > input, form > div > textarea {
+    display: block;
+}
+
+
+
+/* Exception */
+
+.extra-info {
+    font-style: italic;
+}

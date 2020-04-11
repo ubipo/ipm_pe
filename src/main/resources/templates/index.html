@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title>Tasks</title>
+</head>
+
+<body>
+<main>
+    <h1>Task manager 9000</h1>
+    <ul>
+        <li><a th:href="@{/tasks}">tasks</a></li>
+        <li><a th:href="@{/tasks/create}">create task</a></li>
+    </ul>
+</main>
+</body>
+
+</html>

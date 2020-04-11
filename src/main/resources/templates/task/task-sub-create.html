@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title>Create subtask</title>
+</head>
+
+<body>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1>Create subtask</h1>
+        <form th:action="@{/tasks/{slug}/sub/create(slug=${{parentTask.uuid}})}" method="post" th:object="${task}">
+            <div th:replace="fragments/task-form-fields"></div>
+            <div>
+                <button>Create task</button>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+
+</html>

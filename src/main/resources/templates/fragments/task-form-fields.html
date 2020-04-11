@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<!--/*@thymesVar id="task" type="net.pfiers.ipm_minor_ex1.dto.TaskDto"*/-->
+
+<th:block th:fragment="head" th:object="${task}">
+    <p th:if="${not #fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
+    <div>
+        <p th:errors="*{title}"></p>
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Do groceries" th:field="*{title}" required>
+    </div>
+    <div>
+        <p th:errors="*{description}"></p>
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+    </div>
+    <div>
+        <p th:errors="*{dueDate}"></p>
+        <label for="due-date">Due date</label>
+        <div>
+            <input type="date" id="due-date" th:field="*{dueDate}">
+            <button type="button" onclick="this.previousElementSibling.value=''">clear</button>
+        </div>
+    </div>
+    <div>
+        <p th:errors="*{dueTime}"></p>
+        <label for="due-time">Due date</label>
+        <div>
+            <input type="time" id="due-time" th:field="*{dueTime}">
+            <button type="button" onclick="this.previousElementSibling.value=''">clear</button>
+        </div>
+    </div>
+</th:block>
+
+</html>
