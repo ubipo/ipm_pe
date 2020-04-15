@@ -2,7 +2,7 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 
-<!--/*@thymesVar id="task" type="net.pfiers.ipm_minor_ex1.dto.TaskDto"*/-->
+<!--/*@thymesVar id="task" type="net.pfiers.ipm_pe.dto.TaskDto"*/-->
 
 <th:block th:fragment="head" th:object="${task}">
     <p th:if="${not #fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
