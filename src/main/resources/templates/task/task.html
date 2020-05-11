@@ -5,38 +5,41 @@
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>Task detail</title>
+    <title th:text="#{task_detail}"></title>
 </head>
 
 <body>
 <div class="content">
     <div th:replace="fragments/header"></div>
     <main>
-        <h1><span th:text="${task.parent} ? 'Subtask' : 'Task'"></span> detail</h1>
+        <h1 th:switch="${task.parent == null}">
+            <span th:case="true" th:text="#{task_detail}"></span>
+            <span th:case="false" th:text="#{subtask_detail}"></span>
+        </h1>
         <table>
             <tbody>
             <tr th:if="${task.parent}">
-                <td>Parent: </td>
+                <td th:text="#{parent_h}"></td>
                 <td><a th:href="@{/tasks/{slug}(slug=${{task.parent.uuid}})}" th:text="${task.parent.title}"></a></td>
             </tr>
             <tr>
-                <td>Title: </td>
+                <td th:text="#{title_h}"></td>
                 <td th:text="${task.title}"></td>
             </tr>
             <tr>
-                <td>Description: </td>
+                <td th:text="#{description_h}"></td>
                 <td>
                     "<span th:utext="${T(net.pfiers.ipm_pe.util.ThymeleafUtil).multilineEscape(task.description)}"></span>"
                 </td>
             </tr>
             <tr>
-                <td>Due date: </td>
+                <td th:text="#{due_date_h}"></td>
                 <td th:text="${#temporals.format(task.due, 'MMMM dd yyyy ''at'' HH:mm')}"></td>
             </tr>
             </tbody>
         </table>
         <div th:if="${!subTasks.isEmpty()}">
-            <h2>Subtasks</h2>
+            <h2 th:text="#{subtasks_h}"></h2>
             <ul>
                 <li th:each="subTask: ${subTasks}">
                     <a th:href="@{/tasks/{slug}(slug=${{subTask.uuid}})}" th:text="${subTask.title}"></a>
@@ -46,8 +49,8 @@
     </main>
     <aside>
         <p>
-            <a th:href="@{/tasks/edit/{slug}(slug=${{task.uuid}})}">edit</a>
-            <a th:href="@{/tasks/{slug}/sub/create(slug=${{task.uuid}})}">add subtask</a>
+            <a th:href="@{/tasks/edit/{slug}(slug=${{task.uuid}})}" th:text="#{edit}"></a>
+            <a th:href="@{/tasks/{slug}/sub/create(slug=${{task.uuid}})}" th:text="#{add_subtask}"></a>
         </p>
     </aside>
 </div>

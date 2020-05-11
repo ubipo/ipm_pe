@@ -6,18 +6,18 @@
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>Edit task</title>
+    <title th:text="#{task_edit_h}"></title>
 </head>
 
 <body>
 <div class="content">
     <div th:replace="fragments/header"></div>
     <main>
-        <h1>Edit task</h1>
+        <h1 th:text="#{task_edit_h}"></h1>
         <form th:action="@{/tasks/edit/{slug}(slug=${{task.uuid}})}" method="post" th:object="${task}">
             <div th:replace="fragments/task-form-fields"></div>
             <div>
-                <button>Edit task</button>
+                <button th:text="#{edit_task}"></button>
             </div>
         </form>
     </main>

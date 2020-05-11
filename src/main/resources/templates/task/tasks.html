@@ -6,27 +6,29 @@
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>Tasks</title>
+    <title th:text="#{tasks_h}"></title>
 </head>
 
 <body>
 <div class="content">
     <div th:replace="fragments/header"></div>
     <main>
-        <h1>Tasks</h1>
+        <h1 th:text="#{tasks_h}"></h1>
         <div th:switch="${tasks.isEmpty()}">
             <ul th:case="false">
                 <li th:each="task: ${tasks}">
                     <span th:text="|${task.title}: |"></span>
-                    <span> due </span>
-                    <span th:text="${#temporals.format(task.due, 'MMMM dd yyyy ''at'' HH:mm')}"></span>
-                    <a th:href="@{/tasks/{slug}(slug=${{task.uuid}})}">details</a>
+                    <span th:text="#{due}"></span>
+                    <span th:text="${#temporals.format(task.due, 'MMMM dd yyyy')}"></span>
+                    <span th:text="#{at}"></span>
+                    <span th:text="${#temporals.format(task.due, 'HH:mm')}"></span>
+                    <a th:href="@{/tasks/{slug}(slug=${{task.uuid}})}" th:text="#{details}"></a>
                 </li>
             </ul>
-            <p th:case="true">No tasks left to do</p>
+            <p th:case="true" th:text="#{no_more_tasks}"></p>
         </div>
         <p>
-            <a th:href="@{/tasks/create}">add task</a>
+            <a th:href="@{/tasks/create}" th:text="#{add_task}"></a>
         </p>
     </main>
 </div>

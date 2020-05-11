@@ -15,135 +15,24 @@ html, body {
 
 body {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .content {
+    margin-left: 1rem;
     margin-top: 1rem;
     max-width: 40rem;
 }
 
 
-/* Text style */
+/* Header */
 
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-}
-
-.content {
-    margin-top: 1rem;
-    max-width: 40rem;
-}
+/**/
 
 
 /* Text style */
 
 /**/
-
-
-/* Header */
-
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-}
-
-.content {
-    margin-top: 1rem;
-    max-width: 40rem;
-}
-
-
-/* Text style */
-
-/**/
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-}
-
-.content {
-    margin-top: 1rem;
-    max-width: 40rem;
-}
-
-
-/* Text style */
-
-/**/
-
-
-/* Header */
-
-nav > ul {
-    padding-left: 0;
-    overflow: auto;
-    list-style: none;
-}
-
-nav > ul > li {
-    float: left;
-    margin-right: 1rem;
-}
-
-
-/* Form */
-
-form > div {
-    margin-bottom: 1rem;
-}
-
-
-
-/* Header */
-
-nav > ul {
-    padding-left: 0;
-    overflow: auto;
-    list-style: none;
-}
-
-nav > ul > li {
-    float: left;
-    margin-right: 1rem;
-}
 
 
 /* Form */
@@ -161,42 +50,25 @@ nav > ul {
 nav > ul > li {
     float: left;
     margin-right: 1rem;
-}
-
-
-/* Form */
-
-form > div {
-    margin-bottom: 1rem;
-}
-
-/**/
-
-
-/* Header */
-
-nav > ul {
-    padding-left: 0;
-    overflow: auto;
-    list-style: none;
-}
-
-nav > ul > li {
-    float: left;
-    margin-right: 1rem;
-}
-
-
-/* Form */
-
-form > div {
-    margin-bottom: 1rem;
 }
 
 form > div > input, form > div > textarea {
     display: block;
 }
 
+
+/* Header */
+
+nav > ul {
+    padding-left: 0;
+    overflow: auto;
+    list-style: none;
+}
+
+nav > ul > li {
+    float: left;
+    margin-right: 1rem;
+}
 
 
 /* Exception */

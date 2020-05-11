@@ -8,8 +8,8 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class SlugUUIDFormatter implements Formatter<UUID> {
-    private static Base64.Encoder encoder = Base64.getUrlEncoder();
-    private static Base64.Decoder decoder = Base64.getUrlDecoder();
+    private static final Base64.Encoder encoder = Base64.getUrlEncoder();
+    private static final Base64.Decoder decoder = Base64.getUrlDecoder();
 
 
     @Override

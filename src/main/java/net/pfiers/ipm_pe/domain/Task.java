@@ -13,7 +13,6 @@ public class Task {
     private Long id;
 
     @Column(updatable = false, nullable = false)
-    @GeneratedValue()
     private UUID uuid;
     @NotNull
     private String title;

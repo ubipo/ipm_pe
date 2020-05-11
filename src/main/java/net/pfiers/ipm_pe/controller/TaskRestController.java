@@ -17,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskRestController {
-    private TaskService service;
+    private final TaskService service;
 
     @Autowired
     public TaskRestController(TaskService service) {

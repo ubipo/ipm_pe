@@ -1,12 +1,10 @@
 package net.pfiers.ipm_pe.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import net.pfiers.ipm_pe.domain.Task;
 import net.pfiers.ipm_pe.util.SlugUUIDFormatter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;

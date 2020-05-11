@@ -2,22 +2,25 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 
+<!--/*@thymesVar id="uuid" type="java.util.UUID"*/-->
+
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>No such task</title>
+    <title th:text="#{no_task_h}"></title>
 </head>
 
 <body>
 <div class="content">
     <main>
-        <h1>No such task: <span th:text="${{uuid}}"></span></h1>
-        <p>You may have clicked a broken link or made a spelling mistake.</p>
-        <p class="extra-info">Task UUID: <span th:text="${uuid}"></span></p>
+        <h1><span th:text="#{no_task_h}"></span>
+        <span th:text="${{uuid}}"></span></h1>
+        <p th:text="#{no_task_why}"></p>
+        <p class="extra-info"><span th:text="#{task_uuid_colon}"></span><span th:text="${uuid}"></span></p>
     </main>
     <aside>
-        <p><a th:href="@{/tasks}">back to tasks overview</a></p>
-        <p><a th:href="@{/}">home</a></p>
+        <p><a th:href="@{/tasks}" th:text="#{back_to_tasks}"></a></p>
+        <p><a th:href="@{/}" th:text="#{home}"></a></p>
     </aside>
 </div>
 </body>

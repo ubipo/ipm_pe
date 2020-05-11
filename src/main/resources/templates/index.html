@@ -6,17 +6,20 @@
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>Tasks</title>
+    <title th:text="#{app_name_h}"></title>
 </head>
 
 <body>
-<main>
-    <h1>Task manager 9000</h1>
-    <ul>
-        <li><a th:href="@{/tasks}">tasks</a></li>
-        <li><a th:href="@{/tasks/create}">create task</a></li>
-    </ul>
-</main>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1 th:text="#{app_name_h}"></h1>
+        <ul>
+            <li><a th:href="@{/tasks}" th:text="#{tasks_h}"></a></li>
+            <li><a th:href="@{/tasks/create}" th:text="#{create_task_h}"></a></li>
+        </ul>
+    </main>
+</div>
 </body>
 
 </html>

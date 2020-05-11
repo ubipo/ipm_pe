@@ -6,18 +6,18 @@
 <head>
     <div th:replace="fragments/head"></div>
 
-    <title>Create task</title>
+    <title th:text="#{task_create_h}"></title>
 </head>
 
 <body>
 <div class="content">
     <div th:replace="fragments/header"></div>
     <main>
-        <h1>Create task</h1>
+        <h1 th:text="#{task_create_h}"></h1>
         <form th:action="@{/tasks/create}" method="post" th:object="${task}">
             <div th:replace="fragments/task-form-fields"></div>
             <div>
-                <button>Create task</button>
+                <button th:text="#{create_task}"></button>
             </div>
         </form>
     </main>
