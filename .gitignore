@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Personal
+
+ip_minor*.zip
