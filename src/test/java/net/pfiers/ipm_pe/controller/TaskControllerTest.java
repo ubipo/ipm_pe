@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class TaskControllerTest {
     static final String pathPrefix = "/tasks";
+    static final String validButNonExistingSlug = "pvz28T3FTDGdE29vO--0vQ";
 
     @Autowired
     private MockMvc mvc;
@@ -54,7 +55,6 @@ class TaskControllerTest {
     @Test
     @WithUserDetails("admin")
     void getTaskNonExisting() throws Exception {
-        var validButNonExistingSlug = "pvz28T3FTDGdE29vO--0vQ";
         mvc.perform(get(pathPrefix + "/" + validButNonExistingSlug))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("<h1><span>No such task")));
@@ -76,6 +76,21 @@ class TaskControllerTest {
         mvc.perform(get(pathPrefix + "/create"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<h1>Create task</h1>")));
+    }
+
+    @Test
+    @WithUserDetails("admin")
+    void getEditTask() throws Exception {
+        var createPostReq = post(pathPrefix + "/create")
+                .param("title", "Test task")
+                .param("description", "Test desc");
+        var slug = mvc.perform(createPostReq)
+                .andExpect(status().isFound())
+                .andReturn().getResponse().getHeader("Location");
+
+        mvc.perform(get(pathPrefix + "/edit/" + slug))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<h1>Edit task</h1>")));
     }
 
     @Test
@@ -133,6 +148,14 @@ class TaskControllerTest {
 
     @Test
     @WithUserDetails("admin")
+    void getCreateSubtaskNonExisting() throws Exception {
+        mvc.perform(get(pathPrefix + "/" + validButNonExistingSlug + "/sub/create"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(containsString("<h1><span>No such task")));
+    }
+
+    @Test
+    @WithUserDetails("admin")
     void postSubtask() throws Exception {
         var createPostReq = post(pathPrefix + "/create")
                 .param("title", "Test task")
@@ -153,6 +176,14 @@ class TaskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<td>Test subtask</td>")))
                 .andExpect(content().string(containsString("<span>Test subdesc</span>")));
+    }
+
+    @Test
+    @WithUserDetails("admin")
+    void postSubtaskNonExisting() throws Exception {
+        mvc.perform(post(pathPrefix + "/" + validButNonExistingSlug + "/sub/create"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(containsString("<h1><span>No such task")));
     }
 
     @Test
