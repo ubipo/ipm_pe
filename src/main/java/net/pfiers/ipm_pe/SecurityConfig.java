@@ -35,13 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .loginProcessingUrl("/login")
             .defaultSuccessUrl("/", true)
             .failureUrl("/login?credError=true")
-//                .failureHandler(authenticationFailureHandler())
             .and()
             .logout()
             .logoutUrl("/logout")
             .deleteCookies("JSESSIONID")
             .logoutSuccessUrl("/");
-//                .logoutSuccessHandler(logoutSuccessHandler())
     }
 
     @Bean
