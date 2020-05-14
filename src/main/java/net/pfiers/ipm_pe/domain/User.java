@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Locale;
 import java.util.UUID;
 
 @Entity
@@ -30,11 +31,15 @@ public class User {
     @NotNull
     private boolean isAdmin;
 
+    @Column(length=5)
+    private String locale;
 
-    public User(String username, String password, boolean isAdmin) {
+
+    public User(String username, String password, boolean isAdmin, Locale locale) {
         setUsername(username);
         setPassword(password);
         setAdmin(isAdmin);
+        setLocale(locale);
     }
 
     public User() { }
@@ -84,5 +89,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public Locale getLocaleObj() {
+        return new Locale(getLocale());
+    }
+
+    public void setLocale(Locale locale) {
+        setLocale(locale.toString());
     }
 }

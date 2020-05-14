@@ -8,6 +8,7 @@ import net.pfiers.ipm_pe.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -36,14 +37,17 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void setLocale(UUID uuid, Locale locale) {
+        var user = getOrThrow(uuid);
+        user.setLocale(locale);
+        userRepo.save(user);
+    }
+
+    @Override
     public UserDtoPersisted add(UserDto dto) {
         User user;
         if (dto instanceof UserDtoPersisted) {
-            user = userRepo.findByUuid(((UserDtoPersisted) dto).getUuid()).orElseThrow(
-                    () -> new NoSuchElementException(
-                            String.format("User with uuid=%s", ((UserDtoPersisted) dto).getUuid())
-                    )
-            );
+            user = getOrThrow(((UserDtoPersisted) dto).getUuid());
         } else {
             user = dtoMapper.toUser(dto);
         }
@@ -51,7 +55,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDtoPersisted add(UserDtoSignup dto) {
-        return dtoMapper.toDto(userRepo.save(dtoMapper.toUser(dto)));
+    public UserDtoPersisted add(UserDtoSignup dto, Locale locale) {
+        return dtoMapper.toDto(userRepo.save(dtoMapper.toUser(dto, locale)));
+    }
+
+    private User getOrThrow(UUID uuid) {
+        return userRepo.findByUuid(uuid).orElseThrow(() -> new NoSuchElementException(
+                String.format("User with uuid=%s", uuid)
+        ));
     }
 }

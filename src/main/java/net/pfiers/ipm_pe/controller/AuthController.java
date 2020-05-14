@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -43,7 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView postSingup(ModelMap m, @ModelAttribute("user") @Valid UserDtoSignup dto, BindingResult bindingResult) {
+    public ModelAndView postSingup(Locale locale, ModelMap m, @ModelAttribute("user") @Valid UserDtoSignup dto, BindingResult bindingResult) {
         if (!dto.getPasswordRaw().equals(dto.getPasswordRawRepeated()))
             bindingResult.addError(new ObjectError("user", "Passwords do not match"));
         if (bindingResult.hasErrors()) {
@@ -52,7 +53,7 @@ public class AuthController {
             mv.setStatus(HttpStatus.BAD_REQUEST);
             return mv;
         }
-        userService.add(dto);
+        userService.add(dto, locale);
         return new ModelAndView(new RedirectView("/"));
     }
 }

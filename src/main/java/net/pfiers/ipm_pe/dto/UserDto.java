@@ -1,15 +1,23 @@
 package net.pfiers.ipm_pe.dto;
 
+import java.util.Locale;
+
 public class UserDto {
     private String username;
     private String password;
     private boolean isAdmin;
+    private Locale locale;
 
 
-    public UserDto(String username, String password, boolean isAdmin) {
+    public UserDto(String username, String password, boolean isAdmin, Locale locale) {
         setUsername(username);
         setPassword(password);
         setAdmin(isAdmin);
+        setLocale(locale);
+    }
+
+    public UserDto(String username, String password, boolean isAdmin) {
+        this(username, password, isAdmin, Locale.ENGLISH);
     }
 
     public UserDto() {
@@ -39,5 +47,13 @@ public class UserDto {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }
