@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 
 <head>
@@ -48,7 +49,7 @@
         </div>
     </main>
     <aside>
-        <p>
+        <p sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/tasks/edit/{slug}(slug=${{task.uuid}})}" th:text="#{edit}"></a>
             <a th:href="@{/tasks/{slug}/sub/create(slug=${{task.uuid}})}" th:text="#{add_subtask}"></a>
         </p>

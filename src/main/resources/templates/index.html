@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 
 <head>
@@ -15,8 +16,12 @@
     <main>
         <h1 th:text="#{app_name_h}"></h1>
         <ul>
-            <li><a th:href="@{/tasks}" th:text="#{tasks_h}"></a></li>
-            <li><a th:href="@{/tasks/create}" th:text="#{create_task_h}"></a></li>
+            <th:block sec:authorize="isAuthenticated()">
+                <li><a th:href="@{/tasks}" th:text="#{tasks_h}"></a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/tasks/create}" th:text="#{create_task_h}"></a></li>
+            </th:block>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{login_h}"></a></li>
+            <li><a th:href="@{/signup}" th:text="#{signup_verb_h}"></a></li>
         </ul>
     </main>
 </div>

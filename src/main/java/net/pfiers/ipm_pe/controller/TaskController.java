@@ -5,6 +5,7 @@ import net.pfiers.ipm_pe.service.TaskService;
 import net.pfiers.ipm_pe.util.SlugUUIDFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -54,6 +55,7 @@ public class TaskController {
     }
 
     @PostMapping("create")
+    @Secured({"ROLE_ADMIN"})
     public ModelAndView postTask(ModelMap model, @ModelAttribute("task") @Valid TaskDto task, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             var m = new ModelAndView("task/task-create", model);
@@ -77,6 +79,7 @@ public class TaskController {
     }
 
     @PostMapping("edit/{uuid}")
+    @Secured({"ROLE_ADMIN"})
     public ModelAndView postEditTask(ModelMap model, @PathVariable UUID uuid, @ModelAttribute("task") @Valid TaskDto task, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors().stream().map(ObjectError::toString).collect(Collectors.joining()));
@@ -104,6 +107,7 @@ public class TaskController {
     }
 
     @PostMapping("{parentUuid}/sub/create")
+    @Secured({"ROLE_ADMIN"})
     public ModelAndView postSubtask(@PathVariable UUID parentUuid, ModelMap model, @ModelAttribute("task") @Valid TaskDto task, BindingResult bindingResult) {
         var parentTask = service.get(parentUuid);
         if (parentTask.isEmpty())

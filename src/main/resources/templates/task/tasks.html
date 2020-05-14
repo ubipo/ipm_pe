@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 
 <head>
@@ -27,7 +28,7 @@
             </ul>
             <p th:case="true" th:text="#{no_more_tasks}"></p>
         </div>
-        <p>
+        <p sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/tasks/create}" th:text="#{add_task}"></a>
         </p>
     </main>

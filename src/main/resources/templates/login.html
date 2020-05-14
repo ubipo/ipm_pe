@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title th:text="#{login_h}"></title>
+</head>
+
+<body>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1 th:text="#{login_h}"></h1>
+        <form method="post" th:action="@{/login}">
+            <p th:if="${credError}" th:text="#{cred_error}"></p>
+            <p>admin:toor user:toor</p>
+            <div>
+                <label for="username" th:text="#{username_h}"></label>
+                <input type="text" id="username" name="username" value="admin">
+            </div>
+            <div>
+                <label for="password" th:text="#{password_h}"></label>
+                <input type="password" id="password" name="password" value="toor">
+            </div>
+            <div>
+                <input type="submit" value="Log in">
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+
+</html>

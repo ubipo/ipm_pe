@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <div th:replace="fragments/head"></div>
+
+    <title th:text="#{signup_h}"></title>
+</head>
+
+<body>
+<div class="content">
+    <div th:replace="fragments/header"></div>
+    <main>
+        <h1 th:text="#{signup_h}"></h1>
+        <form th:action="@{/signup}" method="post" th:object="${user}">
+            <p th:if="${not #fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
+            <div>
+                <p th:errors="*{username}"></p>
+                <label for="title" th:text="#{username_h}"></label>
+                <input type="text" id="title" th:field="*{username}" required>
+            </div>
+            <div>
+                <p th:errors="*{passwordRaw}"></p>
+                <label for="passwordRaw" th:text="#{password_h}"></label>
+                <input type="password" id="passwordRaw" th:field="*{passwordRaw}" required/>
+            </div>
+            <div>
+                <p th:errors="*{passwordRawRepeated}"></p>
+                <label for="passwordRawRepeated" th:text="#{password_repeated_h}"></label>
+                <input type="password" id="passwordRawRepeated" th:field="*{passwordRawRepeated}" required/>
+            </div>
+            <div>
+                <p th:errors="*{admin}"></p>
+                <label for="admin" th:text="#{admin_h}"></label>
+                <input type="checkbox" id="admin" th:field="*{admin}"/>
+            </div>
+            <div>
+                <button th:text="#{signup_verb}"></button>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+
+</html>
