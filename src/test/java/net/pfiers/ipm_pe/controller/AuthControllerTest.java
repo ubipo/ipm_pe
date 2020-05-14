@@ -69,7 +69,7 @@ class AuthControllerTest {
                 .param("username", "")
                 .param("passwordRaw", "test")
                 .param("passwordRawRepeated", "test"))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -78,6 +78,6 @@ class AuthControllerTest {
                 .param("username", "test")
                 .param("passwordRaw", "test")
                 .param("passwordRawRepeated", "absolutely not the word test"))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isBadRequest());
     }
 }

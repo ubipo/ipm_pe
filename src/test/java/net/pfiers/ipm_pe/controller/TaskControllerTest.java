@@ -79,20 +79,24 @@ class TaskControllerTest {
     }
 
     @Test
+    @WithUserDetails("admin")
     void postGetEditTask() throws Exception {
         var createPostReq = post(pathPrefix + "/create")
                 .param("title", "Test task")
                 .param("description", "Test desc");
-        var redUrl = mvc.perform(createPostReq)
+        var slug = mvc.perform(createPostReq)
                 .andExpect(status().isFound())
                 .andReturn().getResponse().getHeader("Location");
-        var slug = redUrl.substring(redUrl.lastIndexOf('/'));
 
         var updatePostReq = post(pathPrefix + "/edit/" + slug)
                 .param("title", "Test task edited")
                 .param("description", "Test desc");
-        mvc.perform(updatePostReq)
-                .andExpect(status().isFound());
+        mvc.perform(updatePostReq).andExpect(status().isFound());
+
+        mvc.perform(get(pathPrefix + "/" + slug))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<td>Test task edited</td>")))
+                .andExpect(content().string(containsString("<span>Test desc</span>")));
     }
 
     @Test
@@ -149,6 +153,23 @@ class TaskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<td>Test subtask</td>")))
                 .andExpect(content().string(containsString("<span>Test subdesc</span>")));
+    }
+
+    @Test
+    @WithUserDetails("admin")
+    void postSubtaskBadTitle() throws Exception {
+        var createPostReq = post(pathPrefix + "/create")
+                .param("title", "Test task")
+                .param("description", "Test desc");
+        var slug = mvc.perform(createPostReq)
+                .andExpect(status().isFound())
+                .andReturn().getResponse().getHeader("Location");
+
+        var subCreatePostReq = post(pathPrefix + "/" + slug + "/sub/create")
+                .param("title", "") // BAD
+                .param("description", "Test subdesc");
+        mvc.perform(subCreatePostReq)
+                .andExpect(status().isBadRequest());
     }
 
     /* Too much work
