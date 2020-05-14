@@ -1,8 +1,6 @@
 package net.pfiers.ipm_pe.controller;
 
-import net.pfiers.ipm_pe.dto.UserDto;
 import net.pfiers.ipm_pe.dto.UserDtoSignup;
-import net.pfiers.ipm_pe.service.ITaskService;
 import net.pfiers.ipm_pe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
